@@ -149,7 +149,7 @@ function install_meteorite {
 	echo "Install Meteorite"
 	echo "--------------------------------------------------------------------------------"
 
-	npm install -g meteorite
+	sudo npm install -g meteorite
 }
 
 function install_phantomjs {
