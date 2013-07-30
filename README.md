@@ -1,4 +1,4 @@
-# Meteor EC2 installation script
+# Meteorite EC2 installation script
 
 Automated server installation for Meteorite 0.6.0+ on a fresh AWS EC2 Ubuntu Server 12.10 installation.
 
