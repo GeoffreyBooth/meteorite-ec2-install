@@ -7,7 +7,7 @@
 #
 
 # NOTES:
-#	1.	IMPORTANT: You must create a .#production file in the root of your Meteor
+#	1.	IMPORTANT: You must create a .#production file in the root of your Meteorit
 #		app. An example .#production file looks like this:
 #
 # 		export MONGO_URL='mongodb://user:pass@linus.mongohq.com:10090/dbname'
@@ -144,12 +144,12 @@ function install_mongodb {
 	sudo apt-get -y install mongodb
 }
 
-function install_meteor {
+function install_meteorite {
 	echo "--------------------------------------------------------------------------------"
-	echo "Install Meteor"
+	echo "Install Meteorite"
 	echo "--------------------------------------------------------------------------------"
 
-	curl https://install.meteor.com | /bin/sh
+	npm install -g meteorite
 }
 
 function install_phantomjs {
@@ -248,8 +248,8 @@ function setup_post_update_hook {
 	append $HOOK "echo \"Bundling app as a standalone Node.js app\""
 	append $HOOK "echo \"------------------------------------------------------------------------\""
 	append $HOOK "cd $EXPORTFOLDER"
-	append $HOOK "meteor update"
-	append $HOOK "sudo meteor bundle $EXPORTFOLDER/bundle.tar.gz"
+	append $HOOK "mrt update"
+	append $HOOK "sudo mrt bundle $EXPORTFOLDER/bundle.tar.gz"
 	append $HOOK "if [ -f $EXPORTFOLDER/bundle.tar.gz ]; then"
 	append $HOOK "  mkdir -p $RSYNCSOURCE"
 	append $HOOK "  tar -zxf $EXPORTFOLDER/bundle.tar.gz --strip-components 1 -C $RSYNCSOURCE"
@@ -320,7 +320,7 @@ configure_automatic_security_updates
 install_git
 install_nodejs
 install_mongodb
-install_meteor
+install_meteorite
 install_phantomjs
 setup_app_skeleton
 setup_app_service
