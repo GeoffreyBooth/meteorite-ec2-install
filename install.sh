@@ -7,13 +7,17 @@
 #
 
 # NOTES:
-#	1.	IMPORTANT: You must create a .#production file in the root of your Meteorit
-#		app. An example .#production file looks like this:
+#	1.	IMPORTANT: You must create a configuration file (named '.#production' by
+#		default) in the root of your Meteorite app. An example .#production 
+#		file looks like this:
 #
 # 		export MONGO_URL='mongodb://user:pass@linus.mongohq.com:10090/dbname'
 # 		export ROOT_URL='http://www.mymeteorapp.com'
 # 		export NODE_ENV='production'
 # 		export PORT=80
+#
+#		If you'd like to change the filename for the configuration file, change 
+#		the CONFIGFILE variable below.
 #
 #	2.	The APPHOST variable below should be updated to the hostname or elastic
 #		IP of the EC2 instance you created.
@@ -29,6 +33,7 @@
 ################################################################################
 
 APPHOST=12.34.56.78
+CONFIGFILE=.#production
 SERVICENAME=meteor_app
 
 ################################################################################
@@ -240,7 +245,7 @@ function setup_post_update_hook {
 	append $HOOK "echo \"------------------------------------------------------------------------\""
 	append $HOOK "echo \"Updating production executable\""
 	append $HOOK "echo \"------------------------------------------------------------------------\""
-	append $HOOK "sudo mv -f $EXPORTFOLDER/.#production $APPEXECUTABLE"
+	append $HOOK "sudo mv -f $EXPORTFOLDER/$CONFIGFILE $APPEXECUTABLE"
 	append $HOOK "echo -e \"\\\n\\\n/usr/bin/node $APPFOLDER/main.js >> \\\$1 2>&1\" >> $APPEXECUTABLE"
 	append $HOOK "chmod 700 $APPEXECUTABLE"
 
