@@ -276,11 +276,15 @@ function setup_post_update_hook {
 	append $HOOK "    echo \"Restart app\""
 	append $HOOK "    echo \"------------------------------------------------------------------------\""
 	append $HOOK "    sudo service $SERVICENAME restart"
+	append $HOOK "  else"
+	append $HOOK "    echo \"Error: The bundle is invalid.\""
 	append $HOOK "  fi"
 
 	# Clean-up
 	append $HOOK "  cd $APPFOLDER"
 	append $HOOK "  sudo rm -rf $EXPORTFOLDER"
+	append $HOOK "else"
+	append $HOOK "  echo \"Error: Bundle creation failed.\""
 	append $HOOK "fi"
 
 	append $HOOK "echo \"\n\n--- Done.\""
